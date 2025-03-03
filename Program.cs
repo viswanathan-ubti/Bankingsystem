@@ -75,37 +75,15 @@ namespace Bankingsystem
                 {
                     case "1":
                         // For deposit operation
-                        Console.Write("Enter amount to deposit: ");
-                        decimal depositamount;
-                        while (true)
-                        {
-                            if(decimal.TryParse(Console.ReadLine(), out depositamount))
-                            {
-                                myaccount.Deposit(depositamount);
-                                break;
-                            }
-                            else
-                            {
-                                Console.Write("Invalid amount entered Please enter valid amount: ");
-                            }       
-                        }
+                        String Message = "Enter amount to deposit: ";
+                        decimal depositamount = GetDecimalInput(Message);
+                        myaccount.Deposit(depositamount);
                         break;
                     case "2":
                         // For withdraw operation
-                        Console.Write("Enter amount to withdraw: ");
-                        decimal withdrawamount;
-                        while (true)
-                        {
-                            if(decimal.TryParse(Console.ReadLine(), out withdrawamount))
-                            {
-                                myaccount.Withdraw(withdrawamount);
-                                break;
-                            }
-                            else
-                            {
-                                Console.Write("Invalid amount entered Please enter valid amount: ");
-                            }
-                        }
+                        Message = "Enter amount to withdraw: ";
+                        decimal withdrawamount = GetDecimalInput(Message);
+                        myaccount.Withdraw(withdrawamount);
                         break;
                     case "3":
                         // For balance inquiry
@@ -120,6 +98,17 @@ namespace Bankingsystem
                         break;
                 }
             }
+        }
+        // Method to prompt user for amount input with validation
+        static decimal GetDecimalInput(String Message)
+        {
+            Console.Write(Message);
+            decimal amount;
+            while (!decimal.TryParse(Console.ReadLine(), out amount))
+            {
+                Console.Write("Invalid amount entered Please enter valid amount: ");
+            }
+            return amount;
         }
     }
 }
