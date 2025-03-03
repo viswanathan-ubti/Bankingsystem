@@ -14,24 +14,47 @@ namespace Bankingsystem
         // Method to deposit amount into the account
         public void Deposit(decimal amount)
         {
+            try
+            {
             Balance += amount;
             Console.WriteLine("Deposited: " + amount);
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                Console.WriteLine("Deposited amount successfully");
+            }
         }
 
         // Method to Withdraw amount from the account
         public void Withdraw(decimal amount)
         {
-            // Check the withdraw amount is less than or equal to balance amount
-            if (amount <= Balance)
+            try
             {
-                Balance -= amount;
-                Console.WriteLine("Withdraw: " + amount);
+                // Check the withdraw amount is less than or equal to balance amount
+                if (amount <= Balance)
+                {
+                    Balance -= amount;
+                    Console.WriteLine("Withdraw: " + amount);
+                }
+                // If withdraw amount is greater than balance then print Insufficient Balance
+                else
+                {
+                    Console.WriteLine("Insufficient Balance");
+                }
             }
-            // If withdraw amount is greater than balance then print Insufficient Balance
-            else
+            catch(Exception e)
             {
-                Console.WriteLine("Insufficient Balance");
+                Console.WriteLine(e.Message);
             }
+            finally
+            {
+                Console.WriteLine("withdraw operation completed...");
+            }
+
         }
 
         // Method to Inquriy or display the account details
