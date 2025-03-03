@@ -74,19 +74,45 @@ namespace Bankingsystem
                 switch (choice)
                 {
                     case "1":
+                        // For deposit operation
                         Console.Write("Enter amount to deposit: ");
-                        decimal depositamount = Convert.ToDecimal(Console.ReadLine());
-                        myaccount.Deposit(depositamount);
+                        decimal depositamount;
+                        while (true)
+                        {
+                            if(decimal.TryParse(Console.ReadLine(), out depositamount))
+                            {
+                                myaccount.Deposit(depositamount);
+                                break;
+                            }
+                            else
+                            {
+                                Console.Write("Invalid amount entered Please enter valid amount: ");
+                            }       
+                        }
                         break;
                     case "2":
+                        // For withdraw operation
                         Console.Write("Enter amount to withdraw: ");
-                        decimal withdrawamount = Convert.ToDecimal(Console.ReadLine());
-                        myaccount.Withdraw(withdrawamount);
+                        decimal withdrawamount;
+                        while (true)
+                        {
+                            if(decimal.TryParse(Console.ReadLine(), out withdrawamount))
+                            {
+                                myaccount.Withdraw(withdrawamount);
+                                break;
+                            }
+                            else
+                            {
+                                Console.Write("Invalid amount entered Please enter valid amount: ");
+                            }
+                        }
                         break;
                     case "3":
+                        // For balance inquiry
                         myaccount.BalanceInquiry();
                         break;
                     case "4":
+                        // For exit program
                         exit = false;
                         break;
                     default:
